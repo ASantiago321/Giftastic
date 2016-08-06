@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>90s Cartoon Gifs</title>
+</head>
+<body>
+<h1>Find gifs of your favorite 90s Cartoons</h1>
+<div id="cartoons">
+	<button cartoon="animaniacs">Animaniacs</button>
+	<button cartoon="ninjaTurtles">Ninja Turtles</button>
+	<button cartoon="talespin">TaleSpin</button>
+	<button cartoon="doug">Doug</button>
+	<button cartoon="darkwingDuck">Darkwing Duck</button>
+
+<form id="cartoonsform">
+    <label for="cartoon-input">Add a Movie Bro</label>
+    <input type="text" id="cartoon-input"><br>
+    
+    <!-- Button triggers new movie to be added -->
+    <input id="addCartoon" type="submit" value="Add a 90s Cartoon">
+ </form>
+
+    <div id="gifsAppearHere">
+    </div>
+
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type="text/javascript">
+	var topics = ['Animaniacs', 'Ninja Turtles', 'TaleSpin', 'Doug', 'Darkwing Duck']
+
+$('button').on('click', function() {
+        var p = $(this).data('topics');
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + p + "&api_key=dc6zaTOxFJmzC&limit=10";
+        console.log(p);
+
+        $.ajax({
+                url: queryURL,
+
+                data:{
+                	 q: topics
+                	},
+                	method: 'GET'
+            })
+        	
+
+            .done(function(response) {
+                var results = response.data;
+
+                for (var i = 0; i < results.length; i++) {
+                    var gifDiv = $('<div class="item">')
+
+                    var rating = results[i].rating;
+
+                    var p = $('<p>').text("Rating: " + rating);
+
+                    var personImage = $('<img>');
+                    personImage.attr('src', results[i].images.fixed_height_still.url);
+
+                    gifDiv.append(p)
+                    gifDiv.append(personImage)
+
+                    $('#gifsAppearHere').prepend(gifDiv);
+                }
+
+            });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
