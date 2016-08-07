@@ -69,7 +69,7 @@ function onClick(){
 	};
 };
 
-	$(document).on('click', 'button', gifsAppear)
+	$(document).on('click', 'button', gifsAppear);
 
 
 
