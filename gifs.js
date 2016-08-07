@@ -18,7 +18,8 @@ function gifsAppear(){
 			var image = $('<img>');
 			image.attr('id', 'anyImage');
 			image.attr('data-still', results[i].images.fixed_width_still.url);
-			image.attr('data-animate', results[i].images.fixed_width_still.url);
+			image.attr('data-animate', results[i].images.fixed_width.url);
+			image.attr('data-state', 'animate');
 			image.attr('src', results[i].images.fixed_width_still.url);
 			image.on('click', onClick);
 
